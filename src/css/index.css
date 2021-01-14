@@ -125,12 +125,19 @@ em, strong, th, optgroup {
 
   } 
 
-  /* @font-face {
+  @font-face {
   font-family: 'source';
-  src:url('./font/test.ttf');
+  src:url('./font/br.ttf');
   font-weight: normal;
   font-style: normal;
-} */
+}
+
+  @font-face {
+    font-family: 'score';
+    src: url('./font/hanyu.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
 
 
 /*使用指定字体*/
@@ -145,7 +152,7 @@ letter-spacing: 1px;
 .pages{
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #fff;
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -154,8 +161,59 @@ letter-spacing: 1px;
 
 #canvas{
   position: absolute;
+  transform-origin: top;
+  left: 50%!important;
+      transform: translateX(-50%);
+      box-shadow: rgb(255, 255, 255) 0px 0px 0px 8px;
+}
+#canvas_box{
+  background:url(../images/bigimg/big_bg.jpg) center top;
+  background-size: cover;
 }
 
+.shu#canvas_box::before {
+ display: none
+}
+
+#canvas_box::before {
+  content: '';
+  background:url(../images/bigimg/heng_txt.png) center;
+  background-size: cover;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 100;
+  width: calc(467 / 1920 * 100vw);
+  height: calc(467 / 1920 * 100vw / (467 / 137));
+}
+
+.shu #btn1,
+.shu #text2 {
+  display: none;
+}
+
+#btn1{
+  width: calc(343 / 1920 * 100vw);
+  height:calc(343 / 1920 * 100vw / (343 / 85));
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+  background: url(../images/sma_img/save_hanyu/end_btn_h.png) center;
+  background-size: cover;
+}
+
+#btn1.ri{
+  background: url(../images/sma_img/save_hanyu/end_btn_r.png) center;
+  background-size: cover;
+}
+
+#text2{
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  font-size: 14px;
+  color: #fff;
+}
 
 .box{
   width: 100%;
@@ -177,8 +235,10 @@ letter-spacing: 1px;
 }
 
 .scale_dia{
-  animation:scale_dia_ani 0.16s linear 1;
-  -webkit-animation:scale_dia_ani 0.16s linear 1;
+  animation:scale_dia_ani 2s linear infinite;
+  -webkit-animation:scale_dia_ani 2s linear infinite;
+  transform: scaleZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 

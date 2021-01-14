@@ -1,6 +1,8 @@
 const path = require('path');
 //启动热更新的第二步
 const webpack = require('webpack');
+const IP = require('./getIP');
+const HOST = process.env.HOST;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 //导入html-webpack-plugins
 // 只要是插件，都一定要放到plugins节点中去
@@ -19,6 +21,7 @@ module.exports = {
     open:true,//自动打开浏览器
     port:8081,//浏览器端口
     contentBase:"src",//指定托管的根目录，比如index在src"中，不在根目录里面，就需要设置此项
+    host: HOST  || IP,
     // hot: true,
     // hotOnly: true
   },

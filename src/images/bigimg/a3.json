@@ -1,0 +1,25 @@
+{
+"images": ["a3.png"],
+"frames": [
+
+    [0, 0, 500, 500], 
+    [500, 0, 500, 500], 
+    [1000, 0, 500, 500], 
+    [0, 500, 500, 500], 
+    [500, 500, 500, 500], 
+    [1000, 500, 500, 500]
+],
+"animations": {
+    
+        "a_32":[0], 
+        "a_33":[1], 
+        "a_34":[2], 
+        "a_35":[3], 
+        "a_36":[4], 
+        "a_37":[5]
+},
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:fc6d022aca1566a94ff933f2737e56a2$",
+        "Created with TexturePacker (http://www.texturepacker.com) for EasalJS"
+]
+}

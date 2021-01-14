@@ -70,7 +70,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -146,20 +146,20 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>bg.png</filename>
-            <filename>bottom.png</filename>
-            <filename>car_b.png</filename>
-            <filename>car_r.png</filename>
-            <filename>car_y.png</filename>
             <filename>g1.png</filename>
             <filename>g2.png</filename>
             <filename>hand.png</filename>
-            <filename>road.png</filename>
-            <filename>top.png</filename>
-            <filename>card.png</filename>
-            <filename>end_btn.png</filename>
             <filename>txt1.png</filename>
             <filename>you_win.png</filename>
+            <filename>save_hanyu/top_r.png</filename>
+            <filename>save_hanyu/card_h.png</filename>
+            <filename>save_hanyu/card_r.png</filename>
+            <filename>save_hanyu/end_btn_h.png</filename>
+            <filename>save_hanyu/end_btn_r.png</filename>
+            <filename>save_hanyu/top_h.png</filename>
+            <filename>fangkuai.png</filename>
+            <filename>bg_bottom.png</filename>
+            <filename>txt2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

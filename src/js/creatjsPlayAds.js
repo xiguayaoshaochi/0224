@@ -60,8 +60,6 @@ window.endShow = function (choose) {
     wsp.yanhua2_all.scaleX = wsp.yanhua2_all.scaleY = 2; wsp.yanhua22_all.scaleX = wsp.yanhua22_all.scaleY = 2;
     wsp.yanhua2_all.alpha = 0; wsp.yanhua22_all.alpha = 0;
 
-    containerAll_yh.addChild(wsp.yanhua3_all, wsp.yanhua1_all, wsp.yanhua33_all, wsp.yanhua11_all, wsp.yanhua333_all, wsp.yanhua111_all
-      , wsp.yanhua22_all, wsp.yanhua2_all);
     yanhuaChange();
     setTimeouc(function () {
       yanhuaChange1();
@@ -146,19 +144,6 @@ window.endShow = function (choose) {
         var btn = new scale_animate(playBtn, 1, 1.1, 1000);
       });
 
-      wb.play_btn.addEventListener("mousedown", function () {
-        var url = window.appleUrl;
-        if (/android/i.test(userAgent)) {
-          url = window.androidUrl;
-        }
-        if (typeof mraid != "undefined") {
-          mraid.openStore(url);
-        } else if (typeof FbPlayableAd != "undefined") {
-          FbPlayableAd.onCTAClick();
-        } else if (typeof ExitApi != "undefined") {
-          ExitApi.exit();
-        }
-      })
     }, 50)
 
   }, chooseTime)
@@ -1608,6 +1593,16 @@ window.sTime = function(obj,ani){
   return (1000 / 60) * (1 / point) * frameNum;
 }
 
+window.drawR=function(x,y,w,h,color,con){
+  var r = new createjs.Shape();
+  r.graphics.beginFill(color).drawRect(x, y, w, h);
+  if (con) {
+    con.addChild(r);
+  }
+  
+  return r;
+}
+
 window.transObj = {
   o: null,
   start: function (obj) {
@@ -1622,7 +1617,7 @@ window.transObj = {
     // $("#change_up").bind("click", _this.transUp);
     // $("#change_down").bind("click", _this.transDown);
     // console.log($(document));
-    $(document).keydown(function (event) {
+    $(document).on('keydown',function (event) {
       var keyNum = event.which;  //获取键值
       switch (keyNum) { //判断按键
         case 37: _this.transLeft(); break;//左
@@ -1771,6 +1766,7 @@ window.addRectBitmap_simple = (img_name, find_name, img_, img_json, regx, regy, 
   if (isNumber(addArr)) {
     wb[img_name].scaleX = wb[img_name].scaleY = addArr;
   }
+  return wb[img_name];
 }
 
 function isNumber(obj) {

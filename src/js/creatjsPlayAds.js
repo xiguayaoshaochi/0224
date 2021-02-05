@@ -177,8 +177,13 @@ window.removeStop=function(obj){
     console.log(arguments);
     for (var i = 0; i < e; i++) {
       // console.log(arguments[i]);
-      createjs.Tween.removeTweens(arguments[i]);
-      arguments[i].parent.removeChild(arguments[i]);
+      if (arguments[i]!=null) {
+        console.log(arguments[i])
+        createjs.Tween.removeTweens(arguments[i]);
+        arguments[i].parent.removeChild(arguments[i]);
+      }
+
+      
     }
   } else {
     if (obj.name ="hand2") {
@@ -1562,6 +1567,8 @@ window.addBitmap = (img_name, img_, x_, y_, addArr) => {
     wb[img_name].x = x_;
     wb[img_name].y = y_;
   }
+  //  reg_set(wb[img_name], 0.5, 0.5);
+  return wb[img_name];
 }
 
 // 序列帧加载完(base64不需要加载)初始化为全局对象

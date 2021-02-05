@@ -1,5 +1,6 @@
 window.json_sprite = require('../images/bigimg/sprite.json');
 import guang_ from '../images/bigimg/guang.png';
+import bg_ from "../images/bigimg/bg.jpg"
 
 
 // SK
@@ -128,10 +129,11 @@ function loadCompleteimgArr() {
   //开始前加载
   setTimeout(() => {
 
-    addRectBitmap_simple('bg_bottom', 'bg_bottom', sprite_, json_sprite, 0.5, 0.5, (1390-640)/2, screenBottom - 468, "addArrAll", true);
+    // addRectBitmap_simple('bg_bottom', 'bg_bottom', sprite_, json_sprite, 0.5, 0.5, (1390-640)/2, screenBottom - 468, "addArrAll", true);
 
-    
-    
+    addBitmap('bg', bg_, (1390 - 640) / 2, screenBottom - 1138, "addArr6");
+    container4_2.addChild(wb.bg);
+    addRectBitmap_simple('small_bg', 'small_bg', sprite_, json_sprite, 0.5, 0.5, 0, 0, "addArrAll", true);
     // 491
     addRectBitmap_simple('hand', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 358, "addArrAll", true);
     addRectBitmap_simple('hand2', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 40, "addArrAll", true);
@@ -150,21 +152,21 @@ function loadCompleteimgArr() {
     
     addRectBitmap_simple('you_win', 'you_win', sprite_, json_sprite, 1, 1, screenMiddle-585/2, screenTop+100, "addArrAll", true);
     // addRectBitmap_simple('card', 'card', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 276 / 2, screenMiddle-365/2-35, "addArrAll", true);
-    addRectBitmap_simple('txt1', 'txt1', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 584 / 2, screenMiddle - 172 / 2 - 35+172+120, "addArrAll", true);
+    addRectBitmap_simple('txt1', 'txt1', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 511 / 2, screenMiddle - 172 / 2 - 35 + 172 + 120, "addArrAll", true);
     addRectBitmap_simple('txt2', 'txt2', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 665 / 2, screenBottom - 120, "addArrAll", true);
     // addRectBitmap_simple('end_btn', 'end_btn', sprite_, json_sprite, 0.5, 0.5, screenMiddle-431/2, screenBottom-108-100, "addArrAll", true);
 
         if (language == 'Japan') {
           advword = '広告のみ';
           addRectBitmap_simple('top', 'top_r', sprite_, json_sprite, 0.5, 0.5, (1390-640)/2, screenTop, "addArrAll", true);
-          addRectBitmap_simple('end_btn', 'end_btn_r', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 343 / 2, screenBottom - 108 - 60, "addArrAll", true);
-          addRectBitmap_simple('end_btn1', 'end_btn_r', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 343 / 2, screenBottom - 150, "addArrAll", true);
+          addRectBitmap_simple('end_btn', 'end_btn_r', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 460 / 2, screenBottom - 108 - 60, "addArrAll", true);
+          addRectBitmap_simple('end_btn1', 'end_btn_r', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 460 / 2, screenBottom - 150, "addArrAll", true);
           addRectBitmap_simple('card', 'card_r', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 276 / 2, screenMiddle - 365 / 2 - 35, "addArrAll", true);
         } else if (language == 'SK') {
           advword = '광고에만한정하다';
           addRectBitmap_simple('top', 'top_h', sprite_, json_sprite, 0.5, 0.5, (1390-640)/2, screenTop, "addArrAll", true);
-          addRectBitmap_simple('end_btn', 'end_btn_h', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 343 / 2, screenBottom - 108 - 60, "addArrAll", true);
-          addRectBitmap_simple('end_btn1', 'end_btn_h', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 343 / 2, screenBottom - 150, "addArrAll", true);
+          addRectBitmap_simple('end_btn', 'end_btn_h', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 460 / 2, screenBottom - 108 - 60, "addArrAll", true);
+          addRectBitmap_simple('end_btn1', 'end_btn_h', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 460 / 2, screenBottom - 150, "addArrAll", true);
           addRectBitmap_simple('card', 'card_h', sprite_, json_sprite, 0.5, 0.5, screenMiddle - 276 / 2, screenMiddle - 365 / 2 - 35, "addArrAll", true);
         }
         // addRectBitmap_simple('top', 'top', sprite_, json_sprite, 0.5, 0.5, (1390-652)/2, screenTop-3, "addArrAll", true);
@@ -196,9 +198,9 @@ function loadCompleteimgArr() {
      txtaddnuml=10;
      textstart = "1439";
    }
-   window.text = new createjs.Text(textstart, "55px score", "#fff");
-   text.x = screenMiddle - 100 + txtaddnuml+20;
-   text.y = screenTop + 135 + textaddnumt+8;
+   window.text = new createjs.Text(textstart, "55px score", "#000");
+   text.x = screenMiddle - 100 + txtaddnuml+10;
+   text.y = screenTop + 135 + textaddnumt;
    text.textBaseline = "alphabetic";
  
   
@@ -219,7 +221,7 @@ function loadCompleteimgArr() {
 
      window.end_pop = new createjs.Container();
     // roadcon_box.addChild(roadcon1, roadcon3, roadcon4, roadcon2, roadcon5);
-    person.addChild(wb.guang, wb.top, text, wb.bg_bottom, wb.txt2);
+    person.addChild(wb.guang, wb.top, text, wb.txt2);
     
     wb.txt2.scaleX = wb.txt2.scaleY = 0.7;
     wb.txt2.alpha=0;
@@ -231,7 +233,7 @@ function loadCompleteimgArr() {
     // roadcon4.addChild(wb.road4, wb.fish_y1, wb.fish_y2, wb.fish_y3, wb.fish_y4, wb.hand2, wb.hand4);
     
     // console.log(wb.hand.x,wb.hand.y)
-    wb.end_btn1.scaleX = wb.end_btn1.scaleY = 0.9;
+    wb.end_btn1.scaleX = wb.end_btn1.scaleY = 0.7;
     stage.addChild(wb.end_btn1)
     // window.arr_zero2 = [wb.qipao1];
 

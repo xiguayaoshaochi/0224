@@ -69,7 +69,7 @@ var resize = {
     //       canvas.height = 1390;
     //       getCS.style.top = (H - 1390 * stageScalea) / 2 + 'px';
     //     } else {
-  
+
     //     }
     //   }
     // }
@@ -78,7 +78,7 @@ var resize = {
     canvas.width = art_size;
     canvas.height = H / stageScalea;
 
-    
+
 
     containerAll2_cs.x = 0;
     if (ratio > ratio1) {
@@ -109,29 +109,21 @@ var resize = {
       }
     }
 
-     if (W >= H) {
-       canvas.height = 640 / (H / W);
-       getCS.style.height = W + "px";
-       getCS.style.width = H + "px";
-       // canvas.height = W / stageScalea;
-     }
+    if (W >= H) {
+      canvas.height = 640 / (H / W);
+      getCS.style.height = W + "px";
+      getCS.style.width = H + "px";
+      // canvas.height = W / stageScalea;
+    }
 
-      window.screenTop = (1390 - canvas.height) / 2;
-      window.screenMiddle = 1390 / 2;
-      window.screenBottom = (1390 + canvas.height) / 2;
-      window.screenLeft = (1390 - canvas.width) / 2;
-      window.screenRight = (1390 + canvas.width) / 2;
-      console.log(screenBottom + "screenBottom")
+    window.screenTop = (1390 - canvas.height) / 2;
+    window.screenMiddle = 1390 / 2;
+    window.screenBottom = (1390 + canvas.height) / 2;
+    window.screenLeft = (1390 - canvas.width) / 2;
+    window.screenRight = (1390 + canvas.width) / 2;
+    console.log(screenBottom + "screenBottom")
   }
 }
 
 
 module.exports = resize;
-
-
-
-
-
-
-
-

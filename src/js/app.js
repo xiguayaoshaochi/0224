@@ -1,28 +1,32 @@
 var txtArr = [
-  "反面教師", 
-  "天変地異", 
-  "一石二鳥",
-  "多種多様",
-  "迷惑千万",
-  "生年月日",
-  "専業主婦",
-  "絶体絶命",
-  "体力測定",
-  "相思相愛",
-  "天下一品",
-  "合格発表",
-  "一問一答",
-  "危機一髪",
-  "言語道断",
-  "悪戦苦闘",
-  "反射神経",
-  "満場一致",
-  "愛妻弁当",
-  "日本一周",
-  "筆記試験"
+  "反面教師",//1
+  "天変地異",//2
+  "一石二鳥",//3
+  "多種多様",//4
+  "迷惑千万",//5
+  "生年月日",//6
+  "専業主婦",//7
+  "絶体絶命",//8
+  "体力測定",//9
+  "相思相愛",//10
+  "天下一品",//11
+  "合格発表",//12
+  "一問一答",//13
+  "危機一髪",//14
+  "言語道断",//15
+  "悪戦苦闘",//16
+  "反射神経",//17
+  "満場一致",//18
+  "愛妻弁当",//19
+  "日本一周",//20
+  "筆記試験"//21
 ]
 
-// var di_ = require("../images/sma_img/ss_bg.png");
+
+var small_bg_ = require("../images/sma_img/small_bg.png");
+var focus_bg_ = require("../images/sma_img/focus_bg.png");
+var ss_bg_ = require("../images/sma_img/ss_bg.png");
+var ss_c_ = require("../images/sma_img/ss_c.png");
 
 var btn1 = document.createElement('div');
 btn1.id='btn1';
@@ -63,27 +67,86 @@ window.content = new cjs.Container();
 var desk =  addRectBitmap_simple('desk', 'desk', sprite_, json_sprite, 0.5, 0.5, 0, 0, "addArrAll", true);
 person.addChild(desk);
 desk.x = screenMiddle;
-desk.y = screenBottom - 260;
+desk.y = screenMiddle+350;
 
 
-
+//顶部8个词坑
 function addTopCon() {
   var bigCon = new cjs.Container();
-  function addUnit() {
+  function addUnit(x,y) {
+    var newCon = new cjs.Container();
     for (let index = 0; index < 4; index++) {
-      var newCon = new cjs.Container();
       var diname = 'di' + random1(1, 9999);
       var di = addRectBitmap_simple(diname, 'ss_bg', sprite_, json_sprite, 0.5, 0.5, 0, 0, "addArrAll", true);
       newCon.addChild(di);
-      di.x = index*0;
+      di.x = index*36;
       di.y=0;
+      newCon.x = x;
+      newCon.y = y;
     }
-    
+    bigCon.addChild(newCon);
   }
-  
+  bigCon.x = screenLeft+30;
+  bigCon.y = screenTop+185+40;
+
+  for (let index = 0; index < 8; index++) {
+    const ii = index%4;
+    const oo = Math.floor(index /4) ;
+    addUnit(ii * (12 + 36*4), oo * (12 + 36))
+  }
+  person.addChild(bigCon);
 }
 
+addTopCon();
 
+
+//中间主要内容文字
+var textArr = ["悪戦苦反筆闘", "射合満場一記致", "神試格", "絶経験愛発", "体妻表", "弁絶", "当日本一周命"];
+function addTextBox() {
+  var textCon = new cjs.Container();
+  textCon.x=screenLeft+65;
+  textCon.y= screenMiddle-160;
+  textArr.forEach((el,index)=>{
+    var elArr = el.split('');
+    var elarrL = elArr.length;
+    elArr.forEach((eel, indexx) => {
+      var STCon = new cjs.Container();
+      var smname = 'sm' + random1(1, 9999);
+      var smb = addBitmap(smname, small_bg_, 0, 0);
+      var text = new cjs.Text(eel,"41px score", "#fff");
+      var smname1 = 'sm' + random1(1, 9999);
+      var smb1 = addBitmap(smname1, focus_bg_, 0, 0);
+      var text = new cjs.Text(eel, "41px score", "#fff");
+      text.x = (73-text.getBounds().width)/2;
+      text.y = (73 - text.getBounds().height) / 2+5;
+      STCon.addChild(smb);
+      STCon.addChild(smb1);
+      STCon.addChild(text);
+      STCon.x = 73 * index;
+      STCon.y = 73 * (indexx + (7 - elarrL));
+      smb.x = 0;
+      smb.y = 0;
+      smb1.x = 0;
+      smb1.y = 0;
+      smb1.alpha=0;
+      textCon.addChild(STCon);
+    })
+  })
+  person.addChild(textCon);
+  return textCon;
+}
+
+var textCon = addTextBox();
+//  stage.enableMouseOver(10);
+stage.addEventListener("mousedown", function (e) {
+  textCon.children.forEach((el) => {
+    console.log(el)
+    el.addEventListener("stagemousemove", (e) => {
+      console.log(e)
+      el.alpha = 0;
+    })
+  })
+})
 
 
 

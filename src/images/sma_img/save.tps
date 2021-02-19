@@ -157,10 +157,14 @@
             <filename>save_hanyu/end_btn_h.png</filename>
             <filename>save_hanyu/end_btn_r.png</filename>
             <filename>save_hanyu/top_h.png</filename>
-            <filename>fangkuai.png</filename>
             <filename>txt2.png</filename>
             <filename>great.png</filename>
             <filename>small_bg.png</filename>
+            <filename>ss_bg.png</filename>
+            <filename>ss_c.png</filename>
+            <filename>yellow.png</filename>
+            <filename>desk.png</filename>
+            <filename>focus_bg.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

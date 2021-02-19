@@ -152,7 +152,7 @@ letter-spacing: 1px;
 .pages{
   width: 100%;
   height: 100%;
-  background: #fff;
+  /* background: #fff; */
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -163,17 +163,19 @@ letter-spacing: 1px;
   z-index: 99999 !important;
 }
 
-#canvas{
+#canvas,
+#canvas_bottom {
   position: absolute;
   transform-origin: top;
   left: 50%!important;
       transform: translateX(-50%);
       box-shadow: rgb(255, 255, 255) 0px 0px 0px 8px;
 }
-#canvas_box{
+#canvas_box {
   background:url(../images/bigimg/big_bg.jpg) center top;
   background-size: cover;
 }
+
 
 .shu#canvas_box::before {
  display: none
@@ -211,6 +213,20 @@ letter-spacing: 1px;
 #btn1.ri{
   background: url(../images/sma_img/save_hanyu/end_btn_r.png) center;
   background-size: cover;
+}
+
+#canvas_bottom{
+  z-index: 1;
+  background:url(../images/bigimg/bg.jpg) center top;
+  background-size: cover;
+}
+
+#canvas {
+  z-index: 3;
+}
+
+#canvas_sakura {
+  z-index: 2;
 }
 
 #text2{

@@ -5,11 +5,11 @@ import bg_ from "../images/bigimg/bg.jpg"
 
 // SK
 // Japan
-window.language = 'SK';
+window.language = 'Japan';
 
 window.advword = '';
 
-let imgArr = ["sprite", "n1", "n2", "b1", "b2", "a1", "a2","a3"
+let imgArr = ["sprite"
 ];
 let imgNum = 0;
 imgArr.forEach((item) => {
@@ -27,17 +27,24 @@ imgArr.forEach((item) => {
   });
 })
 
-
+var canvas_b = document.createElement('canvas');
+  canvas_b.setAttribute('id', 'canvas_bottom');
+  canvas_b.setAttribute('style', 'position: absolute;left: 0;top: 0;pointer-events: none;');
+document.getElementById('canvas_box').appendChild(canvas_b);
 
 function loadCompleteimgArr() {
   var resizerq = require("./resize.js");
   console.log('rezise')
   resizerq.resizeContent("canvas");
-
+  resizerq.resizeContent("canvas_bottom");
 
   window.onresize = function () {
+    var canvasSnow = document.getElementById('canvas_sakura');
+    canvasSnow.width = window.innerWidth;
+    canvasSnow.height = window.innerHeight;
     setTimeout(function () {
       // resizerq.resizeContent("canvas")
+      var canvas_bottom = document.getElementById('canvas_bottom');
       var W = window.innerWidth;
       var H = window.innerHeight;
       var myIdElement = document.getElementById("canvas_box");
@@ -46,8 +53,10 @@ function loadCompleteimgArr() {
         window.pageState = "heng";
         // resizerq.horizontalChange();
         // resizerq.hengChange();
+        console.log(canvas)
         wb.txt2.alpha = 1;
         canvas.style.transform = 'translateX(-50%) scale(' + H/W+ ')';
+        canvas_bottom.style.transform = 'translateX(-50%) scale(' + H / W + ')';
         myIdElement.classList.remove("shu");
         myIdElement.classList.add('heng');
         wb.end_btn1.alpha=0;
@@ -56,6 +65,7 @@ function loadCompleteimgArr() {
         wb.txt2.alpha = 0;
         window.pageState = "shu";
         canvas.style.transform = 'translateX(-50%) scale(' + 1+ ')';
+        canvas_bottom.style.transform = 'translateX(-50%) scale(' + 1 + ')';
         myIdElement.classList.remove("heng");
         myIdElement.classList.add('shu');
         wb.end_btn1.alpha = 1;
@@ -71,58 +81,6 @@ function loadCompleteimgArr() {
 
 
 
-  var particle_all1 = new createjs.SpriteSheet({
-    framerate: 15,
-    "images": [n1_, n2_],
-    "frames": {
-      "regX": 0,
-      "height": 500,
-      "count": 50,
-      "regY": 0,
-      "width": 250
-    },
-    "animations": {
-      "start": [0, 49, "stop", 1],
-      "start1": [0, 49, "start1", 1],
-      "stop": [49],
-    },
-  });
-
-  var particle_all2 = new createjs.SpriteSheet({
-    framerate: 15,
-    "images": [b1_, b2_],
-    "frames": {
-      "regX": 0,
-      "height": 500,
-      "count": 50,
-      "regY": 0,
-      "width": 250
-    },
-    "animations": {
-      "start": [0, 49, "stop", 1],
-      "start1": [0, 49, "start1", 1],
-      "stop": [49],
-    },
-  });
-
-  var particle_all3 = new createjs.SpriteSheet({
-    framerate: 15,
-    "images": [a1_, a2_, a3_],
-    "frames": {
-      "regX": 0,
-      "height": 500,
-      "count": 37,
-      "regY": 0,
-      "width": 500
-    },
-    "animations": {
-      "start": [0, 36, "stop", 1],
-      "start1": [0, 36, "start1", 1],
-      "stop": [36],
-    },
-  });
-
-
 
 
 
@@ -132,8 +90,8 @@ function loadCompleteimgArr() {
     // addRectBitmap_simple('bg_bottom', 'bg_bottom', sprite_, json_sprite, 0.5, 0.5, (1390-640)/2, screenBottom - 468, "addArrAll", true);
 
     addBitmap('bg', bg_, (1390 - 640) / 2, screenBottom - 1138, "addArr6");
-    container4_2.addChild(wb.bg);
-    addRectBitmap_simple('small_bg', 'small_bg', sprite_, json_sprite, 0.5, 0.5, 0, 0, "addArrAll", true);
+    // container4_2.addChild(wb.bg);
+
     // 491
     addRectBitmap_simple('hand', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 358, "addArrAll", true);
     addRectBitmap_simple('hand2', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 40, "addArrAll", true);
@@ -295,37 +253,37 @@ function loadCompleteimgArr() {
     //   }
     // })
 
-    // document.addEventListener('visibilitychange', function () {
+    document.addEventListener('visibilitychange', function () {
 
-    //   // 用户离开了当前页面
-    //   setTimeout(function () {
-    //     if (document.visibilityState === 'hidden') {
-    //       createjs.Ticker.paused = 1;
-    //       if (musicState != null) {
-    //         // gainNode.gain.value=0;
-    //         audioCtx.suspend();
-    //         wb.open.alpha = 0;
-    //         wb.close.alpha = 1;
-    //       }
+      // 用户离开了当前页面
+      setTimeout(function () {
+        if (document.visibilityState === 'hidden') {
+          createjs.Ticker.paused = 1;
+          if (musicState != null) {
+            // gainNode.gain.value=0;
+            audioCtx.suspend();
+            // wb.open.alpha = 0;
+            // wb.close.alpha = 1;
+          }
 
-    //     }
-    //   }, 200)
+        }
+      }, 200)
 
 
-    //   // 用户打开或回到页面
-    //   setTimeout(function () {
-    //     if (document.visibilityState === 'visible') {
-    //       createjs.Ticker.paused = 0;
-    //       if (musicState == "play") {
-    //         // gainNode.gain.value=1;
-    //         audioCtx.resume();
-    //         wb.open.alpha = 1;
-    //         wb.close.alpha = 0;
-    //       }
-    //     }
-    //   }, 250)
+      // 用户打开或回到页面
+      setTimeout(function () {
+        if (document.visibilityState === 'visible') {
+          createjs.Ticker.paused = 0;
+          if (musicState == "play") {
+            // gainNode.gain.value=1;
+            audioCtx.resume();
+            // wb.open.alpha = 1;
+            // wb.close.alpha = 0;
+          }
+        }
+      }, 250)
 
-    // });
+    });
 
     // wb.open.alpha = 1;
     // wb.close.alpha = 0;

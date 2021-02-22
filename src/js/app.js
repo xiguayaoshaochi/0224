@@ -138,6 +138,7 @@ function addTextTop(con,textarr){
 function handTip() {
   var _this = this;
   _this.start = function (text) {
+    console.log(text)
     _this.arr=[];
     _this.textsp=text.split('');
     for (let index = 0; index < textCon.children.length; index++) {
@@ -162,23 +163,47 @@ function handTip() {
     _this.hand.alpha=0;
     _this.arr[0].parent.addChild(_this.hand);
     if (_this.arr[0].x == _this.arr[1].x) {
-      cjs.Tween.get(_this.hand,{loop:true}).to({
-        alpha: 1
-      }, 100).to({
-        y: _this.arr[3].y +36* 3
-      }, 1000,cjs.Ease.quadOut).to({
-        alpha: 0
-      }, 100)
+      console.log(text, _this.arr)
+      if (text.indexOf('満場一致') > -1) {
+        var bb = _this.arr.find((el)=>{
+          return el.children[2].text == "満"
+        })
+
+        var bb2 = _this.arr.find((el) => {
+          return el.children[2].text == "致"
+        })
+        console.log(bb, bb2)
+        _this.hand.x = bb.x + 36 * 3;
+        _this.hand.y = bb.y + 36 * 3;
+        cjs.Tween.get(_this.hand, {
+          loop: true
+        }).to({
+          alpha: 1
+        }, 200).to({
+          y: bb2.y + 36 * 3
+        }, 750, cjs.Ease.quadOut).to({
+          alpha: 0
+        }, 200)
+      }else{
+        cjs.Tween.get(_this.hand, { loop: true }).to({
+          alpha: 1
+        }, 200).to({
+          y: _this.arr[3].y + 36 * 3
+        }, 1000, cjs.Ease.quadOut).to({
+          alpha: 0
+        }, 200)
+      }
+      
     }else{
-      cjs.Tween.get(_this.hand, {
-        loop: true
-      }).to({
-        alpha: 1
-      }, 100).to({
-        x: _this.arr[3].x + 36 *2
-      }, 750, cjs.Ease.quadOut).to({
-        alpha: 0
-      }, 100)
+        cjs.Tween.get(_this.hand, {
+          loop: true
+        }).to({
+          alpha: 1
+        }, 200).to({
+          x: _this.arr[3].x + 36 * 2
+        }, 750, cjs.Ease.quadOut).to({
+          alpha: 0
+        }, 200)
     }
   },
   _this.stop=function(){
@@ -191,7 +216,7 @@ function handTip() {
   }
 }
 
-var h1 = new handTip();
+window.h1 = new handTip();
 
 
 
@@ -253,6 +278,7 @@ var gameMain = function () {
       h1.stop();
       var saveArr = [];
       stage.addEventListener("stagemousemove", function (e) {
+        // h1.stop();
         var x1 = stage.mouseX;
         var y1 = stage.mouseY;
         textCon.children.forEach((el) => {
@@ -358,12 +384,12 @@ var gameMain = function () {
 
         cjs.Tween.get(el.children[2]).wait(350+350).to({
           alpha:0
-        }, 500, cjs.Ease.quadOut)
+        }, 500, cjs.Ease.quadOut).call(() => {
+          textCon.removeChild(el);
+        })
         cjs.Tween.get(el.children[1]).wait(350).to({
           alpha: 0
-        }, 350, cjs.Ease.quadOut).call(()=>{
-        //  textCon.removeChild(el);
-        })
+        }, 350, cjs.Ease.quadOut)
       })
 
       addTextTop(sitebf, textarr);
@@ -452,7 +478,15 @@ var gameMain = function () {
       setTimeout(() => {
         _this.changeSite(disarr);
         _this.clear();
-        _this.start();
+        setTimeout(() => {
+          if (bigCon.children.find((el) => { return el.state == "empty" }) == undefined){
+
+          }else{
+            _this.start();
+          }
+            
+        }, 220);
+        
       }, 350+350+10);
 
       
@@ -519,8 +553,12 @@ var gameMain = function () {
       chanarr1.forEach((el) => {
         cjs.Tween.get(el).to({
           y: el.y + 73 * 1
-        }, (73 / 50) * 1*73, cjs.Ease.quadOut)
+        }, (73 / 50) * 1 * 73, cjs.Ease.quadOut)
       })
+
+      // setTimeout(() => {
+      //   _this.start();
+      // }, (73 / 50) * 1 * 73);
 
       
     }

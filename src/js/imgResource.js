@@ -9,7 +9,7 @@ window.language = 'Japan';
 
 window.advword = '';
 
-let imgArr = ["sprite"
+let imgArr = ["sprite", "shu_f", "shu_f2"
 ];
 let imgNum = 0;
 imgArr.forEach((item) => {
@@ -79,7 +79,22 @@ function loadCompleteimgArr() {
 
 
 
-
+  var sf_all = new createjs.SpriteSheet({
+    framerate: 15,
+    "images": [shu_f_, shu_f2_],
+    "frames": {
+      "regX": 0,
+      "height": 520,
+      "count": 30,
+      "regY": 0,
+      "width": 260
+    },
+    "animations": {
+      "stop": [29],
+      "start": [0, 29, "stop",0.6],
+      "start1": [0, 29, "start1"],
+    },
+  });
 
 
 
@@ -91,7 +106,7 @@ function loadCompleteimgArr() {
 
     addBitmap('bg', bg_, (1390 - 640) / 2, screenBottom - 1138, "addArr6");
     // container4_2.addChild(wb.bg);
-
+    addSpriteSheet("sfani", sf_all, "stop", 0, 0, 1, 0.5, 0.5);
     // 491
     addRectBitmap_simple('hand', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 358, "addArrAll", true);
     addRectBitmap_simple('hand2', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 40, "addArrAll", true);

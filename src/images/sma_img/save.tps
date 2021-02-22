@@ -162,7 +162,6 @@
             <filename>small_bg.png</filename>
             <filename>ss_bg.png</filename>
             <filename>ss_c.png</filename>
-            <filename>yellow.png</filename>
             <filename>desk.png</filename>
             <filename>focus_bg.png</filename>
         </array>

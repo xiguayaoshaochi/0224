@@ -159,11 +159,11 @@
             <filename>save_hanyu/top_h.png</filename>
             <filename>txt2.png</filename>
             <filename>great.png</filename>
-            <filename>small_bg.png</filename>
-            <filename>ss_bg.png</filename>
-            <filename>ss_c.png</filename>
-            <filename>desk.png</filename>
-            <filename>focus_bg.png</filename>
+            <filename>chengball.png</filename>
+            <filename>container.png</filename>
+            <filename>greenball.png</filename>
+            <filename>redball.png</filename>
+            <filename>blueball.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

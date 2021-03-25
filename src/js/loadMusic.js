@@ -1,7 +1,8 @@
 let musicArr = [
   "bgm",
   "choose",
-  "ding"
+  "ding",
+  "success"
 ];
 let musicNum = 0;
 musicArr.forEach((item) => {

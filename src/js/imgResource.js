@@ -9,7 +9,7 @@ window.language = 'Japan';
 
 window.advword = '';
 
-let imgArr = ["sprite", "shu_f", "shu_f2"
+let imgArr = ["sprite", "shu_f", "shu_f2", "yh1", "yh2"
 ];
 let imgNum = 0;
 imgArr.forEach((item) => {
@@ -39,9 +39,9 @@ function loadCompleteimgArr() {
   resizerq.resizeContent("canvas_bottom");
 
   window.onresize = function () {
-    var canvasSnow = document.getElementById('canvas_sakura');
-    canvasSnow.width = window.innerWidth;
-    canvasSnow.height = window.innerHeight;
+    // var canvasSnow = document.getElementById('canvas_sakura');
+    // canvasSnow.width = window.innerWidth;
+    // canvasSnow.height = window.innerHeight;
     setTimeout(function () {
       // resizerq.resizeContent("canvas")
       var canvas_bottom = document.getElementById('canvas_bottom');
@@ -61,6 +61,7 @@ function loadCompleteimgArr() {
         myIdElement.classList.add('heng');
         wb.end_btn1.alpha=0;
         textadv.alpha = 0;
+        wb.txt2.alpha = 0;
       } else {
         wb.txt2.alpha = 0;
         window.pageState = "shu";
@@ -68,7 +69,12 @@ function loadCompleteimgArr() {
         canvas_bottom.style.transform = 'translateX(-50%) scale(' + 1 + ')';
         myIdElement.classList.remove("heng");
         myIdElement.classList.add('shu');
-        wb.end_btn1.alpha = 1;
+        if (end_pop.alpha!=0) {
+          wb.end_btn1.alpha = 0;
+        }else{
+          wb.end_btn1.alpha = 1;
+        }
+        
         textadv.alpha = 1;
         // resizerq.verticalChange();
         // resizerq.shuChange();
@@ -96,6 +102,23 @@ function loadCompleteimgArr() {
     },
   });
 
+  var yh_all = new createjs.SpriteSheet({
+    framerate: 15,
+    "images": [yh1_, yh2_],
+    "frames": {
+      "regX": 0,
+      "height": 616,
+      "count": 34,
+      "regY": 0,
+      "width": 294
+    },
+    "animations": {
+      "stop": [33],
+      "start": [0, 33, "stop", 0.6],
+      "start1": [0, 33, "start1"],
+    },
+  });
+
 
 
 
@@ -107,13 +130,11 @@ function loadCompleteimgArr() {
     addBitmap('bg', bg_, (1390 - 640) / 2, screenBottom - 1138, "addArr6");
     // container4_2.addChild(wb.bg);
     addSpriteSheet("sfani", sf_all, "stop", 0, 0, 1, 0.5, 0.5);
+
+    addSpriteSheet("yh_ani", yh_all, "stop", 0, 0, 1, 0.5, 0.5);
+
     // 491
     addRectBitmap_simple('hand', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 358, "addArrAll", true);
-    addRectBitmap_simple('hand2', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 40, "addArrAll", true);
-    addRectBitmap_simple('hand3', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 497, "addArrAll", true);
-    addRectBitmap_simple('hand4', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 290, "addArrAll", true);
-    addRectBitmap_simple('hand5', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 497, "addArrAll", true);
-    addRectBitmap_simple('hand6', 'hand', sprite_, json_sprite, 0.9, 0.1, -55, 290, "addArrAll", true);
     addRectBitmap_simple('g1', 'g1', sprite_, json_sprite, 1, 1, 15, 40, "addArrAll", true);
     addRectBitmap_simple('g2', 'g2', sprite_, json_sprite, 1, 1, 15, 40, "addArrAll", true);
 
@@ -198,7 +219,7 @@ function loadCompleteimgArr() {
     
     wb.txt2.scaleX = wb.txt2.scaleY = 0.7;
     wb.txt2.alpha=0;
-    window.arr_zero = [  end_pop, wb.hand2, wb.hand, wb.hand3, wb.hand4, wb.hand5, wb.hand6];
+    window.arr_zero = [  end_pop,wb.hand];
 
     // roadcon1.addChild(wb.road1,wb.waterweeds1, wb.waterweeds2, wb.waterweeds3, wb.waterweeds4, wb.waterweeds5, wb.fish_p1, wb.fish_p2, wb.fish_p3, wb.fish_p4);
     // roadcon2.addChild(wb.road2, wb.fish_m2, wb.fish_m3, wb.fish_m4, wb.hand, wb.hand3, wb.hand5);
@@ -349,12 +370,14 @@ function loadCompleteimgArr() {
       myIdElement.classList.remove("shu");
       myIdElement.classList.add('heng');
       canvas.style.transform = 'translateX(-50%) scale(' + H / W + ')';
+      canvas_b.style.transform = 'translateX(-50%) scale(' + H / W + ')';
       wb.end_btn1.alpha = 0;
       textadv.alpha = 0;
     } else {
       wb.txt2.alpha = 0;
       window.pageState = "shu";
       canvas.style.transform = 'translateX(-50%) scale(' + 1 + ')';
+      canvas_b.style.transform = 'translateX(-50%) scale(' + 1 + ')';
       myIdElement.classList.remove("heng");
       myIdElement.classList.add('shu');
       wb.end_btn1.alpha = 1;

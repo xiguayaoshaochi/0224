@@ -5,14 +5,12 @@ import 'yuki-createjs/lib/tweenjs-0.6.2.combined'
 // import createjs from 'createjs-npm/lib/create';
 
 
-
-
 window.onload=function(){
   document.getElementsByTagName("body")[0].style.opacity=0;
   require('./loadMusic.js');
   require("./creatjsPlayAds.js");
   require("./imgResource.js");
-  require("./yinghua.js");
+  // require("./yinghua.js");
 }
 
 if (module.hot) {

@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var cjs = createjs;
 window.first=()=>{
   window.dx1 = wb.yingzi.x - wsp.mine_all_ani.x;
   window.dy1 = wb.yingzi.y - wsp.mine_all_ani.y;
@@ -1742,6 +1743,99 @@ window.concs2 = {
 }
 
 
+window.handTips=function(obj) {
+  var _this = this;
+  _this.obj = obj;
+  console.log(obj.name)
+  _this.lock = true;
+  var objpar = _this.obj.parent;
+  var gname = "g" + random1(1, 9999);
+  var gname2 = "g" + random1(1, 9999)
+
+  _this.ready = function () {
+      _this.obj.skewY=180;
+      _this.obj.alpha = 0;
+      _this.obj.x = _this.obj.x + 20;
+      _this.obj.y = _this.obj.y + 20;
+      _this.obj.scaleX = _this.obj.scaleY = 1.1;
+
+    },
+    _this.start = function () {
+      _this.ready();
+      cjs.Tween.get(_this.obj).to({
+        alpha: 1
+      }, 200).call(() => {
+        cjs.Tween.get(_this.obj, {
+          loop: true
+        }).to({
+          x: _this.obj.x - 20,
+          y: _this.obj.y - 20,
+          scaleX: 1,
+          scaleY: 1
+        }, 300).call(() => {
+          addRectBitmap_simple(gname, 'g1', sprite_, json_sprite, 0.5, 0.5, 15, 40, "addArrAll", true);
+          addRectBitmap_simple(gname2, 'g1', sprite_, json_sprite, 0.5, 0.5, 15, 40, "addArrAll", true);
+          objpar.addChild(wb[gname], wb[gname2], _this.obj);
+          wb[gname].x = _this.obj.x + 0;
+          wb[gname].y = _this.obj.y - 10 - 0;
+          wb[gname].alpha = 0;
+          wb[gname].scaleX = wb[gname].scaleY = 0.5;
+          wb[gname2].x = _this.obj.x + 0;
+          wb[gname2].y = _this.obj.y - 10 - 0;
+          wb[gname2].alpha = 0;
+          wb[gname2].scaleX = wb[gname2].scaleY = 0.5;
+          cjs.Tween.get(wb[gname]).to({
+            alpha: 1,
+            scaleX: 0.8,
+            scaleY: 0.8
+          }, 600).to({
+            alpha: 0,
+            scaleX: 1,
+            scaleY: 1
+          }, 600)
+          cjs.Tween.get(wb[gname2]).wait(400).to({
+            alpha: 1,
+            scaleX: 0.8,
+            scaleY: 0.8
+          }, 600).to({
+            alpha: 0,
+            scaleX: 1,
+            scaleY: 1
+          }, 600)
+        }).wait(200).to({
+          x: _this.obj.x,
+          y: _this.obj.y,
+          scaleX: 1.1,
+          scaleY: 1.1
+        }, 300).call(() => {
+          // cjs.Tween.get(_this.obj).to({
+          //   alpha: 0
+          // }, 200).wait(1500).call(()=>{
+          //   // if (_this.lock) {
+          //   //    _this.start();
+          //   // }
+          // })
+          // objpar.removeChild(wb[gname], wb[gname2]);
+        })
+
+      });
+    }
+
+  _this.start();
+  _this.stop = function () {
+    _this.lock = false;
+    createjs.Tween.removeTweens(_this.obj);
+    if (wb[gname]) {
+      createjs.Tween.removeTweens(wb[gname]);
+      createjs.Tween.removeTweens(wb[gname2]);
+      wb[gname].alpha = wb[gname2].alpha = 0
+    }
+
+    _this.ready();
+  }
+}
+
+
 window.getQueryString = function (name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
   var r = window.location.search.substr(1).match(reg);
@@ -1757,10 +1851,13 @@ window.addRectBitmap_simple = (img_name, find_name, img_, img_json, regx, regy, 
     wb[img_name].x = x_;
     wb[img_name].y = y_;
   }
+  
   var xx_ = img_json["frames"][img_json["animations"][find_name][0]][0];
   var yy_ = img_json["frames"][img_json["animations"][find_name][0]][1];
   var w_ = img_json["frames"][img_json["animations"][find_name][0]][2];
   var h_ = img_json["frames"][img_json["animations"][find_name][0]][3];
+
+  // console.log(xx_,yy_,w_,h_)
   wb[img_name].sourceRect = new createjs.Rectangle(xx_, yy_, w_, h_);
   wb[img_name].name = img_name;
   if (boolean == true) {

@@ -163,13 +163,17 @@ letter-spacing: 1px;
   z-index: 99999 !important;
 }
 
+.heng #canvas_bottom{
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 8px;
+}
+
 #canvas,
 #canvas_bottom {
   position: absolute;
   transform-origin: top;
   left: 50%!important;
       transform: translateX(-50%);
-      box-shadow: rgb(255, 255, 255) 0px 0px 0px 8px;
+
 }
 #canvas_box {
   background:url(../images/bigimg/big_bg.jpg) center top;
@@ -217,7 +221,7 @@ letter-spacing: 1px;
 
 #canvas_bottom{
   z-index: 1;
-  background:url(../images/bigimg/bg.jpg) center top;
+  background:url(../images/bigimg/bg.jpg) center bottom no-repeat;
   background-size: cover;
 }
 
